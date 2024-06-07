@@ -15,6 +15,8 @@ RUN \
     gzip \
     tar \
     zlib-dev && \
+  echo "http://dl-cdn.alpinelinux.org/alpine/v3.16/community" >> /etc/apk/repositories && \
+  apk add --no-cache postgresql15 postgresql15-client postgresql15-contrib && \
   rm -rf /var/cache/apk/*
 
 RUN gem install backup -v ${BACKUP_VERSION}
