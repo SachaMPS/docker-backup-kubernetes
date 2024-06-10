@@ -21,14 +21,14 @@ RUN apk add --no-cache \
 # Download and install PostgreSQL 15
 RUN apk add --no-cache --virtual .build-deps \
     wget \
-    && wget --quiet https://ftp.postgresql.org/pub/source/v15.0/postgresql-15.0.tar.gz \
-    && tar -xzf postgresql-15.0.tar.gz \
-    && cd postgresql-15.0 \
-    && ./configure \
+    && wget --quiet https://ftp.postgresql.org/pub/source/v15.7/postgresql-15.7.tar.gz \
+    && tar -xzf postgresql-15.7.tar.gz \
+    && cd postgresql-15.7 \
+    && ./configure --with-openssl \
     && make \
     && make install \
     && cd .. \
-    && rm -rf postgresql-15.0* \
+    && rm -rf postgresql-15.7* \
     && apk del .build-deps
 
 RUN gem install backup -v ${BACKUP_VERSION}
